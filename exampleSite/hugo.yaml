@@ -155,9 +155,14 @@ params:
   showThemeSwitch: true      # Set to false to hide theme style switcher (palette icon)
   showDarkModeSwitch: true   # Set to false to hide dark mode switcher (sun/moon icon)
   showLanguageSwitch: true   # Set to false to hide language switcher
+  languageSwitchMode: "dropdown"  # Language switch mode: "dropdown" (show panel) or "cycle" (direct cycle)
 
   # Header sticky effect
   stickyHeader: true  # Set to true to enable sticky navigation bar
+
+  # Dock display mode
+  # Options: "scroll" (show on scroll up), "always" (always visible), "float" (floating button)
+  dock: "float"
 
   # default color scheme
   colorScheme: "default"
@@ -282,7 +287,7 @@ params:
 
 
   katex:
-    enabled: false
+    enabled: true
     delimiters:
       - left: "$$"
         right: "$$"
@@ -298,7 +303,7 @@ params:
         display: true
       
   mermaid:
-    enabled: false
+    enabled: true
 
   # GLightbox
   lightbox:
@@ -325,6 +330,21 @@ params:
     calculateItemsHeight: false
 
 
+  codeblock:
+    collapse:
+      enabled: true
+      defaultState: expanded  # expanded, collapsed
+      autoCollapseLines: 30
+      autoCollapseHeight: 400
+      collapsedHeight: 120
+
+  readingProgress:
+    enabled: true
+    height: 3
+    showOnHomepage: false
+    smoothScroll: true
+    hideOnComplete: false
+
 markup:
   tableOfContents:
     startLevel: 2
@@ -333,6 +353,19 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+    extensions:
+      extras:
+        delete:
+          enable: true
+        insert:
+          enable: true
+        mark:
+          enable: true
+        subscript:
+          enable: false
+        superscript:
+          enable: false   
+      strikethrough: false 
   highlight:
     codeFences: true
     guessSyntax: false
@@ -343,20 +376,7 @@ markup:
     tabWidth: 2
 
 
-codeblock:
-  collapse:
-    enabled: true
-    defaultState: expanded  # expanded, collapsed
-    autoCollapseLines: 30
-    autoCollapseHeight: 400
-    collapsedHeight: 120
 
-readingProgress:
-  enabled: true
-  height: 3
-  showOnHomepage: false
-  smoothScroll: true
-  hideOnComplete: false
 
 
 
