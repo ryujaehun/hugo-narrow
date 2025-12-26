@@ -1,4 +1,4 @@
-/*! tailwindcss v4.1.11 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.1.17 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -235,6 +235,9 @@
   ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
     padding-block: 0;
   }
+  ::-webkit-calendar-picker-indicator {
+    line-height: 1;
+  }
   :-moz-ui-invalid {
     box-shadow: none;
   }
@@ -293,6 +296,9 @@
   }
   .top-12 {
     top: calc(var(--spacing) * 12);
+  }
+  .top-24 {
+    top: calc(var(--spacing) * 24);
   }
   .top-\[15\%\] {
     top: 15%;
@@ -742,6 +748,9 @@
     flex: 1;
   }
   .flex-shrink-0 {
+    flex-shrink: 0;
+  }
+  .shrink-0 {
     flex-shrink: 0;
   }
   .-translate-x-1\/2 {
@@ -1327,16 +1336,19 @@
       background-color: color-mix(in oklab, var(--color-white) 80%, transparent);
     }
   }
+  .bg-linear-to-l {
+    --tw-gradient-position: to left;
+    @supports (background-image: linear-gradient(in lab, red, red)) {
+      --tw-gradient-position: to left in oklab;
+    }
+    background-image: linear-gradient(var(--tw-gradient-stops));
+  }
   .bg-gradient-to-b {
     --tw-gradient-position: to bottom in oklab;
     background-image: linear-gradient(var(--tw-gradient-stops));
   }
   .bg-gradient-to-br {
     --tw-gradient-position: to bottom right in oklab;
-    background-image: linear-gradient(var(--tw-gradient-stops));
-  }
-  .bg-gradient-to-l {
-    --tw-gradient-position: to left in oklab;
     background-image: linear-gradient(var(--tw-gradient-stops));
   }
   .bg-gradient-to-r {
@@ -1565,6 +1577,9 @@
   .pt-2 {
     padding-top: calc(var(--spacing) * 2);
   }
+  .pr-2 {
+    padding-right: calc(var(--spacing) * 2);
+  }
   .pr-4 {
     padding-right: calc(var(--spacing) * 4);
   }
@@ -1734,7 +1749,7 @@
     backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
   }
   .transition {
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, visibility, content-visibility, overlay, pointer-events;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
@@ -2278,9 +2293,9 @@
       padding-block: calc(var(--spacing) * 1.5);
     }
   }
-  .md\:pr-\[21rem\] {
+  .md\:pr-84 {
     @media (width >= 48rem) {
-      padding-right: 21rem;
+      padding-right: calc(var(--spacing) * 84);
     }
   }
   .md\:text-left {
@@ -2313,6 +2328,16 @@
   .lg\:grid-cols-3 {
     @media (width >= 64rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .xl\:block {
+    @media (width >= 80rem) {
+      display: block;
+    }
+  }
+  .xl\:hidden {
+    @media (width >= 80rem) {
+      display: none;
     }
   }
 }
@@ -2364,7 +2389,6 @@
   [data-theme="claude"] {
     --color-primary: oklch(0.62 0.14 39.04);
     --color-primary-foreground: oklch(1 0 0);
-    --color-secondary: oklch(0.92 0.01 92.99);
     --color-secondary: oklch(0.92 0.01 92.99);
     --color-secondary-foreground: oklch(0.43 0.02 98.6);
     --color-accent: oklch(0.92 0.01 92.99);
@@ -3458,7 +3482,6 @@
     --tw-gradient-position: to right in oklab;
     background-image: linear-gradient(var(--tw-gradient-stops));
     --tw-gradient-from: transparent;
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
     --tw-gradient-via: var(--color-border);
     --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-via-stops);
@@ -3744,6 +3767,122 @@
     margin-block: calc(var(--spacing) * 1);
     padding: calc(var(--spacing) * 0);
   }
+  .toc-sidebar {
+    width: 280px;
+    z-index: 30;
+  }
+  .toc-sidebar-left {
+    left: max(1rem, calc((100vw - 896px) / 2 - 280px - 2rem));
+  }
+  .toc-sidebar-right {
+    right: max(1rem, calc((100vw - 896px) / 2 - 280px - 2rem));
+  }
+  #toc-sidebar-content {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+    --tw-leading: calc(var(--spacing) * 6);
+    line-height: calc(var(--spacing) * 6);
+  }
+  #toc-sidebar-content ul {
+    margin: calc(var(--spacing) * 0);
+    list-style-type: none;
+    padding: calc(var(--spacing) * 0);
+  }
+  #toc-sidebar-content li {
+    margin-block: calc(var(--spacing) * 1);
+    padding: calc(var(--spacing) * 0);
+  }
+  #toc-sidebar-content a {
+    display: block;
+    border-radius: var(--radius-md);
+    padding-inline: calc(var(--spacing) * 2);
+    padding-block: calc(var(--spacing) * 1.5);
+    color: var(--color-muted-foreground);
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
+        }
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-primary);
+      }
+    }
+  }
+  #toc-sidebar-content li.active > a {
+    --tw-translate-x: calc(var(--spacing) * 0.5);
+    --tw-translate-y: -1px;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+    scale: 1.02;
+    background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
+    --tw-font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+  }
+  #toc-sidebar-content ul ul {
+    margin-top: calc(var(--spacing) * 1);
+    margin-left: calc(var(--spacing) * 3);
+  }
+  .toc-sidebar-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-muted-foreground) transparent;
+    @supports (color: color-mix(in lab, red, red)) {
+      scrollbar-color: color-mix(in srgb, var(--color-muted-foreground) 30%, transparent) transparent;
+    }
+  }
+  .toc-sidebar-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .toc-sidebar-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .toc-sidebar-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-muted-foreground);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in srgb, var(--color-muted-foreground) 30%, transparent);
+    }
+    border-radius: 3px;
+  }
+  .toc-sidebar-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-muted-foreground);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in srgb, var(--color-muted-foreground) 50%, transparent);
+    }
+  }
+  .toc-sidebar {
+    animation: toc-sidebar-fade-in 0.3s ease-out;
+  }
+  @keyframes toc-sidebar-fade-in {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .toc-sidebar.order-last {
+    animation-name: toc-sidebar-fade-in-right;
+  }
+  @keyframes toc-sidebar-fade-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
   #toc-content a {
     position: relative;
     display: block;
@@ -3795,14 +3934,10 @@
   }
   #toc-content a.active, #toc-content li.active > a {
     --tw-translate-x: calc(var(--spacing) * 0.5);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
     --tw-translate-y: -1px;
     translate: var(--tw-translate-x) var(--tw-translate-y);
     scale: 1.02;
-    background-color: var(--color-primary);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
-    }
+    background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
     color: var(--color-primary);
